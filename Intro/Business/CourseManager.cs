@@ -20,7 +20,7 @@ public class CourseManager
         course1.Price = 0;
 
         Course course2 = new Course();
-        course2.Id = 2;
+        course2.Id = 2; 
         course2.Name = "Java";
         course2.Description = "Java 17 vs...";
         course2.Price = 10;
