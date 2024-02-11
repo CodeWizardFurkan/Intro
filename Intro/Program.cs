@@ -1,4 +1,5 @@
 ﻿using Intro.Business;
+using Intro.DataAccess.Concretes;
 using Intro.Entities;
 
 string message1 = "Krediler";
@@ -51,14 +52,48 @@ for (int i = 0; i < courses.Length; i++)
     Console.WriteLine(courses[i].Name + " / " + courses[i].Price);
 }
 
-CourseManager courseManager = new();
-Course[] courses2 = courseManager.GetAll();
+CourseManager courseManager = new(new DapperCourseDal());
+List<Course> courses2 = courseManager.GetAll();
 
-for (int i = 0; i < courses2.Length; i++)
+for (int i = 0; i < courses2.Count; i++)
 {
     Console.WriteLine(courses2[i].Name + " / " + courses2[i].Price);
 }
 
 Console.WriteLine("Kod bitti");
+
+IndividualCustomer customer1 = new IndividualCustomer();
+customer1.Id = 1;
+customer1.NationaIdentity = "123456985";
+customer1.FirstName = "Furkan";
+customer1.LastName = "Demir";
+customer1.CustomerNumber = "123456";
+
+IndividualCustomer customer2 = new IndividualCustomer();
+customer2.Id = 2;
+customer2.NationaIdentity = "5698132165";
+customer2.FirstName = "İrem";
+customer2.LastName = "Karaca";
+customer2.CustomerNumber = "885423";
+
+CorporateCustomer customer3 = new CorporateCustomer();
+customer3.Id = 3;
+customer3.Name = "kodlama.io";
+customer3.CustomerNumber = "5265252";
+customer3.TaxNumber = "1234567890";
+
+CorporateCustomer customer4 = new CorporateCustomer();
+customer4.Id = 4;
+customer4.Name = "abc";
+customer4.CustomerNumber = "58521425";
+customer4.TaxNumber = "15253542";
+
+BaseCustomer[] customers = {customer1, customer2, customer3, customer4 };
+
+//polymorphism
+foreach (BaseCustomer customer in customers)
+{
+    Console.WriteLine(customer.CustomerNumber);
+}
 
 
